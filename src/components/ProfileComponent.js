@@ -8,17 +8,16 @@ import axios from "axios";
 
 function ProfileComponent(props) {
   const [expiryDate, setExpiryDate] = useState('');
-  const temp = props.sendData.profileData.emailId
+  const temp = props.sendData.emailId
 
-  useEffect(() => {
+  useEffect((temp) => {
     axios
       .get(
         "https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/expiryinfo/", {params: {key1: temp}}
       ).then((response) => {
       setExpiryDate(response.data.body);
-      console.log(response.data.body);
   }).catch(error => console.error('error'))
-  }, []);
+  }, [temp]);
    
   return ( 
     <div className="bg-darks">
@@ -34,7 +33,7 @@ function ProfileComponent(props) {
             </div>
             <Card>
               <h4>Manage your Profile</h4>
-              <h5>Account holder: {props.sendData.profileData.fName} {props.sendData.profileData.lName}</h5>
+              <h5>Account holder: {props.sendData.fName} {props.sendData.lName}</h5>
               <h4>Your subscription next expires on <span style={{color: "green"}}>{expiryDate}</span></h4>
             </Card>
           </Col>

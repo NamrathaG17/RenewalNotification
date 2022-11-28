@@ -10,7 +10,8 @@ import { useState } from "react";
 
 function MagzineComponent(props) {
   const [isProfile, setIsProfile] = useState(false);
-  const transferData = props;
+  console.log("props",props)
+  const transferData = props.profileData;
 
   return (
     <div>
@@ -29,6 +30,9 @@ function MagzineComponent(props) {
         >
           Profile
         </Navbar.Brand>
+        <Navbar.Brand href="" onClick={() => {
+            props.isLoggedin(false);
+          }}>Logout</Navbar.Brand>
       </Navbar>
       <Container>
         {isProfile ? (

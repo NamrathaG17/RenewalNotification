@@ -20,6 +20,10 @@ function Userreg() {
     setUserEmail(email)
   }
 
+  const isLoggedin = (value) => {
+    setDisplaySignUp(value)
+  }
+
   const data = {
     fName: fname,
     lName: lname,
@@ -34,7 +38,7 @@ function Userreg() {
                   <div>
                     <Row>
                       <Col>
-                        <MagzineComponent profileData = {data}></MagzineComponent>
+                        <MagzineComponent profileData = {data} isLoggedin = {isLoggedin}></MagzineComponent>
                       </Col> 
                     </Row>
                   </div>
