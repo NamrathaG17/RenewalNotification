@@ -9,6 +9,11 @@ import axios from "axios";
 function ProfileComponent(props) {
   const [expiryDate, setExpiryDate] = useState('');
   const temp = props.sendData.emailId
+  const [message, setMessage] = useState('')
+
+  const sendData = {
+    'emailId' : temp
+  }
 
   useEffect((temp) => {
     axios
@@ -18,6 +23,15 @@ function ProfileComponent(props) {
       setExpiryDate(response.data.body);
   }).catch(error => console.error('error'))
   }, [temp]);
+
+  const renewAction = () => {
+    axios
+    .post("https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/renewaccount",sendData)
+    .then((response) => {
+      console.log("hii", response)
+      setMessage(response.data.body)
+    })
+  }
    
   return ( 
     <div className="bg-darks">
@@ -31,10 +45,12 @@ function ProfileComponent(props) {
                 src="https://img.freepik.com/premium-vector/anonymous-user-flat-icon-vector-illustration-with-long-shadow_520826-1932.jpg"
               />
             </div>
+            <h4 style={{color: 'red'}}>{message}</h4>
             <Card>
               <h4>Manage your Profile</h4>
               <h5>Account holder: {props.sendData.fName} {props.sendData.lName}</h5>
               <h4>Your subscription next expires on <span style={{color: "green"}}>{expiryDate}</span></h4>
+              <href onClick={renewAction}>Please click to renew automatically</href>
             </Card>
           </Col>
         </Row>

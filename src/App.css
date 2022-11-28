@@ -16,3 +16,7 @@ img {
   height: 54% !important;
   width: 20% !important;
 }
+href{
+  color: rgb(55, 12, 185);
+  font-size: larger;
+}
