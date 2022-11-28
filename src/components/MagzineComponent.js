@@ -9,8 +9,8 @@ import "./Magzine.css";
 import { useState } from "react";
 
 function MagzineComponent(props) {
-  const [isProfile, setIsProfile] = useState(false)
-  const transferData = props
+  const [isProfile, setIsProfile] = useState(false);
+  const transferData = props;
 
   return (
     <div>
@@ -21,16 +21,22 @@ function MagzineComponent(props) {
         <Navbar.Brand href="#home">Cook Books</Navbar.Brand>
         <Navbar.Brand href="#home">Educationl</Navbar.Brand>
         <Navbar.Brand href="#home">Fictional</Navbar.Brand>
-        <Navbar.Brand href="" onClick={() => {setIsProfile(true)}}>Profile</Navbar.Brand>
+        <Navbar.Brand
+          href=""
+          onClick={() => {
+            setIsProfile(true);
+          }}
+        >
+          Profile
+        </Navbar.Brand>
       </Navbar>
       <Container>
-      { isProfile ? (
-        <div>
-          <ProfileComponent sendData = {transferData}></ProfileComponent>
-        </div>
-      ) : (
-        <div>
-          
+        {isProfile ? (
+          <div>
+            <ProfileComponent sendData={transferData}></ProfileComponent>
+          </div>
+        ) : (
+          <div>
             <Row>
               <Col className="text-color">
                 <p>
@@ -48,13 +54,13 @@ function MagzineComponent(props) {
                   <Card class="card-style">
                     <Card.Img
                       class="card-img"
-                      src="https://shop.cricketmedia.com/media/catalog/product/cache/7c7343c143d3029c9f7210fd8c797c32/m/u/muse-magazine-february-2017_4_1_1.jpg"
+                      src="https://cdn.the-scientist.com/assets/magazineIssueNo/1948/iImg/26883/july-august-issue-s.jpg"
                     />
                     <Card.Body>
-                      <Card.Title>Climate reality</Card.Title>
+                      <Card.Title>The scientist</Card.Title>
                       <Card.Text>
-                        My latest article for Muse magazine tells the story of
-                        two teams of high school kids. They invented...
+                        Assessments of climate vulnerability provide crucial
+                        information for conservation efforts...
                       </Card.Text>
                       <Button variant="primary">Add to cart</Button>
                     </Card.Body>
@@ -64,13 +70,13 @@ function MagzineComponent(props) {
                   <Card class="card-style">
                     <Card.Img
                       class="card-img"
-                      src="https://www.oldimprints.com/pictures/medium/50403.jpg"
+                      src="https://assets.bizclikmedia.net/321/0daa71a24e1a6718be4f46d5d083c870:958a05762282aca875665c3252adaf4b/unnamed-20-4-3-jpg.webp"
                     />
                     <Card.Body>
-                      <Card.Title>Bazaar</Card.Title>
+                      <Card.Title>Sustainability</Card.Title>
                       <Card.Text>
-                        Harper's Bazaar is an American monthly women's fashion
-                        magazine.
+                        Sustainability Magazine is a Digital Community for the
+                        global sustainability space that connects..
                       </Card.Text>
                       <Button variant="primary">Add to cart</Button>
                     </Card.Body>
@@ -145,9 +151,8 @@ function MagzineComponent(props) {
                 </Col>
               </Row>
             </div>
-          
-        </div>
-      )}
+          </div>
+        )}
       </Container>
     </div>
   );

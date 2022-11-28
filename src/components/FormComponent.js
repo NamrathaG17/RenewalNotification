@@ -56,7 +56,7 @@ function FormComponent(props) {
   return (
     <div>
       <Container>
-      { status ? (<h3 className="text-color">User already exists</h3>) : (<h3 className="text-color">Sign Up</h3>)}
+      { status ? (<h3 className="text-color">Your email exists with us, please use different email</h3>) : (<h3 className="text-color">Sign Up</h3>)}
         <Form>
           <Form.Group className="mb-3">
             <Form.Label className="text-color">First Name</Form.Label>
