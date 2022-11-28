@@ -11,7 +11,7 @@ function FormComponent(props) {
   const [lName, setLName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState(false);
 
   const api = 'https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/userdetails';
   const data = { "emailId": email, "firstName": fName, "lastName": lName, "password": password};
@@ -32,48 +32,42 @@ function FormComponent(props) {
     setPassword(event.target.value);
   };
 
-  const sendEvent = () => {
-    setSubmit(true);
+  const sendEvent = (event) => {
+    event.preventDefault()
+    submitSignUp(true)
   };
 
-  // useEffect(() => {
-  //   if (status == 'new'){
-  //     console.log("after1", status)
-  //   }
-  //   else{
-  //     console.log("after2", status)
-  //   }
-  // },[status]);
-
-  const submitSignUp = () => {
-    // console.log("before", status, submit, fName, lName)
+  const submitSignUp = (submit1) => {
     axios
     .post(api,data)
-    .then((response) => setStatus(response.data.status))
-    if (submit == true && fName && lName && email && password) {
-      props.checkFlag(true, email, fName, lName);
-    }
-    else{
-      props.checkFlag(false)
-    } 
+    .then((response) => {
+      if (response.data.status == 'new' && submit1 == true && fName && lName && email && password) {
+        props.checkFlag(true, email, fName, lName);
+      }
+      else{
+        props.checkFlag(false)
+        setStatus(true)
+      } 
+    })
+   
   };
 
-  
 
   return (
     <div>
       <Container>
-        <Form onSubmit={submitSignUp}>
+      { status ? (<h3 className="text-color">User already exists</h3>) : (<h3 className="text-color">Sign Up</h3>)}
+        <Form>
           <Form.Group className="mb-3">
             <Form.Label className="text-color">First Name</Form.Label>
             <Form.Control
               type="text"
-              value={fName}
+              value={fName} 
               onChange={handleFName}
               placeholder="Enter your first name"
               required
             />
-          </Form.Group>
+          </Form.Group> 
 
           <Form.Group className="mb-3">
             <Form.Label className="text-color">Last Name</Form.Label>
@@ -120,7 +114,7 @@ function FormComponent(props) {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit" onClick={() => sendEvent()}>
+          <Button variant="primary" type="submit" onClick={(e) => sendEvent(e)}>
             Submit
           </Button>
         </Form>

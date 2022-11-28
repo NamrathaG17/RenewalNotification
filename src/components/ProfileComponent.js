@@ -35,17 +35,9 @@ function ProfileComponent(props) {
             <Card>
               <h4>Manage your Profile</h4>
               <h5>Account holder: {props.sendData.profileData.fName} {props.sendData.profileData.lName}</h5>
-              <h4>Your subscription next expires on {expiryDate}</h4>
+              <h4>Your subscription next expires on <span style={{color: "green"}}>{expiryDate}</span></h4>
             </Card>
           </Col>
-          {/* <Col>
-            <Card>
-                
-            </Card>
-            <Card>
-                content here
-            </Card>
-          </Col> */}
         </Row>
       </Container>
     </div>
