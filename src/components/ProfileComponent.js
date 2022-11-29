@@ -15,7 +15,7 @@ function ProfileComponent(props) {
     'emailId' : temp
   }
 
-  useEffect((temp) => {
+  useEffect(() => {
     axios
       .get(
         "https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/expiryinfo/", {params: {key1: temp}}
@@ -28,7 +28,6 @@ function ProfileComponent(props) {
     axios
     .post("https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/renewaccount",sendData)
     .then((response) => {
-      console.log("hii", response)
       setMessage(response.data.body)
     })
   }
