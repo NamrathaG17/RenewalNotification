@@ -11,7 +11,9 @@ function FormComponent(props) {
   const [lName, setLName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [checkbox, setcheckBox] = useState(false);
   const [status, setStatus] = useState(false);
+  const [errors, setErrors] = useState(false);
 
   const api = 'https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/userdetails';
   const data = { "emailId": email, "firstName": fName, "lastName": lName, "password": password};
@@ -32,6 +34,10 @@ function FormComponent(props) {
     setPassword(event.target.value);
   };
 
+  const handlecheckBox = () => {
+    setcheckBox(true)
+  }
+
   const sendEvent = (event) => {
     event.preventDefault()
     submitSignUp(true)
@@ -42,11 +48,15 @@ function FormComponent(props) {
     .post(api,data)
     .then((response) => {
       if (response.data.status == 'new' && submit1 == true && fName && lName && email && password) {
-        props.checkFlag(true, email, fName, lName);
+          props.checkFlag(true, email, fName, lName);
+      }
+      else if (response.data.status != 'dispatched' && submit1 == true && fName && lName && email && password && checkbox){
+        props.checkFlag(false)
+        setStatus(true) 
       }
       else{
         props.checkFlag(false)
-        setStatus(true)
+        setErrors(true)
       } 
     })
    
@@ -56,7 +66,8 @@ function FormComponent(props) {
   return (
     <div>
       <Container>
-      { status ? (<h3 className="text-color">Your email exists with us, please use different email</h3>) : (<h3 className="text-color">Sign Up</h3>)}
+      { (status) ? (<h3 className="text-color">Your email exists with us, please use different email</h3>) : (<h3 className="text-color">Sign Up</h3>)}
+      { (errors) ? (<h3 className="text-color">Please fill all the fields</h3>) : (<h3></h3>)}
         <Form>
           <Form.Group className="mb-3">
             <Form.Label className="text-color">First Name</Form.Label>
@@ -109,6 +120,8 @@ function FormComponent(props) {
             <Form.Check
               className="text-color"
               type="checkbox"
+              value={checkbox} 
+              onChange={handlecheckBox}
               label="I have read and accepted the terms and conditions"
               required
             />
