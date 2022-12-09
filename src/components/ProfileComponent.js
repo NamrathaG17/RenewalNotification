@@ -16,13 +16,17 @@ function ProfileComponent(props) {
   }
 
   useEffect(() => {
+    fetchExpiry()
+  }, [temp]);
+
+  const fetchExpiry = () => {
     axios
       .get(
         "https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/expiryinfo/", {params: {key1: temp}}
       ).then((response) => {
       setExpiryDate(response.data.body);
   }).catch(error => console.error('error'))
-  }, [temp]);
+  }
 
   const renewAction = () => {
     axios
@@ -30,6 +34,7 @@ function ProfileComponent(props) {
     .then((response) => {
       setMessage(response.data.body)
     })
+    fetchExpiry()
   }
    
   return ( 
