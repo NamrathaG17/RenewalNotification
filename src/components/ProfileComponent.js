@@ -28,7 +28,7 @@ function ProfileComponent(props) {
   }).catch(error => console.error('error'))
   }
 
-  const renewAction = () => {
+  const renewAction = () => { 
     axios
     .post("https://6yqw23c8h9.execute-api.us-east-1.amazonaws.com/dev/renewaccount",sendData)
     .then((response) => {
