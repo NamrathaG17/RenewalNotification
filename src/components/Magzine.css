@@ -1,0 +1,16 @@
+
+.nav-text{
+    padding-left: 3%;
+    font-style: italic;
+}
+.card-style{
+    width: 55%;
+    height: 50%;
+    border: solid rgb(73, 73, 72) 1px;
+    border-radius: 5%;
+    padding: 3%;
+}
+.card-img{
+    height: 6%;
+    width: 6%;
+}

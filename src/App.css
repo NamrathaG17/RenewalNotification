@@ -1,0 +1,22 @@
+img {
+  padding: 10px;
+  height: 700px;
+}
+.signup-form{
+  margin-top: 55%
+}
+.text-color{
+  color: rgb(249, 249, 249);
+}
+.profile-style{
+  padding-top: 3%;
+  text-align: center;
+}
+.profile-img{
+  height: 54% !important;
+  width: 20% !important;
+}
+href{
+  color: rgb(55, 12, 185);
+  font-size: larger;
+}
